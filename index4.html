@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: Futura;
+          outline: none;
+        }
+
+        body {
+          font-family: Futura;
+          background: #FCFFA6;
+        }
+
+        .content-box {
+          width: 800px;
+          position: absolute;
+          transform: translate(-50%, -52%);
+          top: 50%;
+          left: 50%;
+        }
+
+        .main-form:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+
+        .main-form {
+          padding: 20px;
+          border-radius: 10px;
+          background: white;
+          box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1);
+        }
+        .main-form__title > li{
+          padding: 20px 0;
+          width: 49%;
+          float: left;
+          list-style-type: none;
+          text-align: center;
+          cursor: pointer;
+        }
+        .main-form__title h1 {
+          position: relative;
+          font-size: 0.8rem;
+          text-transform: uppercase;
+          letter-spacing: 3px;
+          margin-bottom: 25px;
+        }
+        .main-form__title h1:after {
+          position: absolute;
+          bottom: -13px;
+          left: 0;
+          right: 0;
+          margin: auto;
+          width: 100%;
+          height: 4px;
+          background: #f2f2f2;
+          content: "";
+        }
+        .main-form__input {
+          display: block;
+          width: 100%;
+          border: 0;
+          background: #fcfcfc;
+          border-radius: 6px;
+          padding: 15px;
+          margin-bottom: 10px;
+          outline: 0;
+          font-size: 0.7rem;
+          color: #333;
+          transition: all 0.2s ease-in-out;
+        }
+        .main-form__input:focus {
+          background: #f7f7f7;
+        }
+        .main-form__body .btn {
+          display: block;
+          width: 48%;
+          margin-top: 10px;
+          float: right;
+          background: #e6e6e6;
+          padding: 15px;
+          border: 0;
+          font-size: 0.6rem;
+          color: #888;
+          cursor: pointer;
+          letter-spacing: 3px;
+          text-transform: uppercase;
+          transition: all 0.2s ease-in-out;
+        }
+        .main-form__body .btn:last-of-type {
+          float: left;
+          background: #FCA44B;
+          color: #fff;
+        }
+        .main-form__body .btn:last-of-type:hover {
+          background: #fb8b19;
+        }
+
+        ::-webkit-input-placeholder {
+          color: #ccc;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+        }
+
+        :-moz-placeholder {
+          color: #cccccc;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+        }
+
+        ::-moz-placeholder {
+          color: #cccccc;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+        }
+
+        :-ms-input-placeholder {
+          color: #cccccc;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+        }
+
+        img {
+          height: 150px;
+        }
+
+        .img-box {
+          float: left;
+        }
+
+        .intro-area {
+          float: left;
+        }
+
+        .intro-box {
+          margin-top: 122.5px;
+          margin-right: 50px;
+        }
+
+        .word-box {
+          float: left;
+          padding-top: 30px;
+        }
+
+        .form-box {
+          width: 400px;
+          float: right;
+        }
+
+        .main-form__title .active {
+          color: #FCA44B;
+        }
+
+        .main-form__title .active h1:after{
+          background: #FCA44B;
+        }
+
+        @media (max-width: 800px) {
+          .content-box {
+            width: auto;
+          }
+          .intro-area {
+            width: 322px;
+            margin: 0 40px;
+          }
+          .intro-box {
+            margin: 0 auto;
+          }
+          .form-box {
+            width: 100%;
+          }
+        }
+
+        @media (max-width: 402px) {
+          .img-box {
+            float: none;
+            width: 100%;
+          }
+          .word-box {
+            padding-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+            float: none;
+          }
+          .img-box img {
+            display: block;
+            margin: 0 auto;
+          }
+          .intro-area {
+            width: 100%;
+            margin: 0;
+          }
+          .content-box {
+            width: 80%;
+          }
+        }
+    </style>
+    <script>
+      $(()=>{
+        $("#login").click(()=>{
+          $("#login").addClass("active").siblings().removeClass('active');
+          $("#nickname").css("display", "none");
+          $("#repwd").css("display", "none");
+          $("#action").text("로그인");
+
+          if (window.innerWidth > 800) // 반응형
+            $(".intro-box").css("margin-top", "65px");
+          else
+            $(".intro-box").css("margin-top", "0");
+        });
+
+        $("#join").click(()=>{
+          $("#join").addClass("active").siblings().removeClass('active');
+          $("#nickname").css("display", "block");
+          $("#repwd").css("display", "block");
+          $("#action").text("가입하기");
+
+          if (window.innerWidth > 800) // 반응형
+            $(".intro-box").css("margin-top", "122.5px");
+          else
+            $(".intro-box").css("margin-top", "0");
+        });
+      });
+    </script>
+    <title>포프링</title>
+</head>
+<body>
+    <div class="content-box">
+      <div class="intro-area">
+        <div class="intro-box">
+          <div class="img-box"><img src="bbibbi2.png"></div>
+          <div class="word-box">
+            <h1>포프링</h2>
+            <p>프로젝트, 포트폴리오</p>
+            <p>포프링에서 해결하세요!</p>
+          </div>
+        </div>
+      </div>
+      <div class="form-box">
+        <form class="main-form">
+            <div>
+              <ul class="main-form__title">
+                <li id="join" class="active"><h1>회원가입</h1></li>
+                <li id="login"><h1>로그인</h1></li>
+              </ul>
+            </div>
+            <div class="main-form__body">
+              <input class="main-form__input" type="text" placeholder="아이디" />
+              <input class="main-form__input" type="email" placeholder="닉네임" id="nickname"/>
+              <input class="main-form__input" type="password" placeholder="비밀번호" />
+              <input class="main-form__input" type="password" placeholder="비밀번호 확인" id="repwd"/>
+              <button class="btn">이전으로</button>
+              <button class="btn" id="action">가입하기</button>
+            </div>
+        </form>  
+      </div>
+    </div>
+</body>
+</html>
