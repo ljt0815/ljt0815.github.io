@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Muffin Studio | AI Video Production</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Geist:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#353437",
+                        "surface-dim": "#131315",
+                        "tertiary-fixed-dim": "#ffb1c3",
+                        "on-secondary-fixed-variant": "#004f54",
+                        "primary-fixed": "#e9ddff",
+                        "on-surface": "#e5e1e4",
+                        "secondary": "#d3fbff",
+                        "inverse-primary": "#7212ff",
+                        "surface-container": "#201f21",
+                        "on-tertiary-fixed-variant": "#8f0041",
+                        "on-primary-fixed-variant": "#5700c9",
+                        "surface-variant": "#353437",
+                        "inverse-surface": "#e5e1e4",
+                        "surface-container-lowest": "#0e0e10",
+                        "on-error": "#690005",
+                        "on-primary-fixed": "#23005b",
+                        "on-secondary-container": "#00686f",
+                        "surface-tint": "#d1bcff",
+                        "tertiary": "#ffb1c3",
+                        "surface-container-low": "#1c1b1d",
+                        "tertiary-fixed": "#ffd9e0",
+                        "secondary-fixed-dim": "#00dbe9",
+                        "primary": "#d1bcff",
+                        "background": "#131315",
+                        "primary-fixed-dim": "#d1bcff",
+                        "outline": "#958da3",
+                        "surface-container-high": "#2a2a2c",
+                        "on-secondary": "#00363a",
+                        "on-primary": "#3c0090",
+                        "on-error-container": "#ffdad6",
+                        "primary-container": "#7000ff",
+                        "surface-bright": "#39393b",
+                        "surface": "#131315",
+                        "secondary-fixed": "#7df4ff",
+                        "tertiary-container": "#b60055",
+                        "error": "#ffb4ab",
+                        "on-tertiary": "#66002c",
+                        "outline-variant": "#4a4457",
+                        "on-background": "#e5e1e4",
+                        "secondary-container": "#00eefc",
+                        "on-surface-variant": "#ccc3da",
+                        "on-tertiary-container": "#ffc5d1",
+                        "on-tertiary-fixed": "#3f0019",
+                        "on-primary-container": "#ddcdff",
+                        "on-secondary-fixed": "#002022",
+                        "error-container": "#93000a",
+                        "inverse-on-surface": "#313032"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "container-max": "1440px",
+                        "margin-desktop": "80px",
+                        "gutter": "24px",
+                        "margin-tablet": "40px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Sora"],
+                        "display-lg-mobile": ["Sora"],
+                        "headline-md": ["Sora"],
+                        "headline-sm": ["Sora"],
+                        "body-lg": ["Geist"],
+                        "body-md": ["Geist"],
+                        "code-sm": ["JetBrains Mono"],
+                        "label-caps": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "display-lg-mobile": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "code-sm": ["13px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #131315;
+            color: #e5e1e4;
+            scroll-behavior: smooth;
+        }
+
+        .glass-panel {
+            background: rgba(32, 31, 33, 0.6);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .glow-hover:hover {
+            box-shadow: 0 0 20px rgba(112, 0, 255, 0.4);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(to bottom, rgba(19, 19, 21, 0.1), rgba(19, 19, 21, 1));
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .bento-card {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .bento-card:hover {
+            transform: translateY(-4px);
+            background: rgba(53, 52, 55, 0.8);
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/20">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<svg viewBox="0 0 200 200" class="h-8 md:h-10" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="muffinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7000ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#b000ff;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Muffin Top / AI Cloud -->
+  <path d="M50,100 C50,60 80,40 100,40 C120,40 150,60 150,100" stroke="url(#muffinGrad)" stroke-width="8" fill="none" />
+  <!-- Muffin Base / Digital Tray -->
+  <path d="M60,110 L140,110 L130,150 L70,150 Z" fill="url(#muffinGrad)" opacity="0.8" />
+  <!-- AI Dots/Pixels -->
+  <circle cx="100" cy="70" r="4" fill="#ffffff" />
+  <circle cx="80" cy="85" r="4" fill="#ffffff" />
+  <circle cx="120" cy="85" r="4" fill="#ffffff" />
+</svg>
+
+<span class="text-headline-sm font-headline-sm font-bold text-primary hidden md:block">Muffin Studio</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md text-body-md" href="#home">Home</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-body-md text-body-md" href="#services">Services</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-body-md text-body-md" href="#about">About</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-body-md text-body-md" href="#contact">Contact</a>
+</div>
+<button class="bg-primary-container text-on-primary-container px-6 py-2 rounded-full font-bold hover:opacity-80 active:scale-95 transition-all text-body-md font-body-md">
+                Get Started
+            </button>
+</div>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center pt-20 overflow-hidden" id="home">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-hero-gradient z-10"></div>
+<div class="absolute inset-0 bg-cover bg-center opacity-40 scale-105 transition-transform duration-[10s] hover:scale-100" data-location="Seoul" style="background-image: url('./muffin.webp');"></div>
+</div>
+<div class="relative z-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full">
+<div class="max-w-3xl">
+<span class="inline-block px-4 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary font-label-caps text-label-caps mb-6">
+                        PIONEERING AI CINEMATICS
+                    </span>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-6 leading-tight">
+                        AI로 그리는 미래의 영상,<br/>
+<span class="text-primary-fixed">머핀 스튜디오</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-xl">
+                        AI 영상 제작부터 기획까지, 당신의 상상을 현실로 만듭니다. 우리는 최신 생성형 AI 모델을 통해 기존 영상 제작의 한계를 뛰어넘습니다.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="inline-flex items-center justify-center px-8 py-4 bg-primary-container text-on-primary-container rounded-lg font-bold text-lg glow-hover transition-all group" href="#contact">
+                            프로젝트 문의하기
+                            <span class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+<a class="inline-flex items-center justify-center px-8 py-4 border border-outline/30 hover:bg-surface-variant transition-colors rounded-lg font-bold text-lg" href="#services">
+                            서비스 둘러보기
+                        </a>
+</div>
+</div>
+</div>
+<!-- Scroll Indicator -->
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 animate-bounce">
+<span class="text-label-caps font-label-caps uppercase">Scroll</span>
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</section>
+<!-- Brand Story Section -->
+<section class="py-24 md:py-32 bg-surface-container-lowest" id="about">
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="grid lg:grid-cols-2 gap-16 items-center">
+<div>
+<h2 class="font-headline-md text-headline-md mb-8">당신의 비전을 담은<br/><span class="text-secondary-fixed-dim">압도적인 영상 경험</span></h2>
+<div class="space-y-6 text-on-surface-variant font-body-lg text-body-lg">
+<p>
+                                Muffin Studio는 인공지능과 영화적 예술의 교차점에서 새로운 시각적 언어를 창조합니다. 우리는 단순한 영상 제작을 넘어, 브랜드의 철학과 감성을 AI라는 혁신적인 도구로 재해석합니다.
+                            </p>
+<p>
+                                기획자, AI 엔지니어, 영상 제작 전문가가 협업하여 고퀄리티 시네마틱 콘텐츠를 빠르고 효율적으로 구현하며, 크리에이터와 기업이 상상하는 모든 가능성을 현실로 바꾸는 'AI 프로덕션 허브'입니다.
+                            </p>
+</div>
+<div class="grid grid-cols-2 gap-8 mt-12">
+<div class="border-l-2 border-primary pl-4">
+<p class="text-display-lg-mobile font-display-lg-mobile text-primary">500+</p>
+<p class="font-label-caps text-label-caps">AI PROJECTS COMPLETED</p>
+</div>
+<div class="border-l-2 border-secondary pl-4">
+<p class="text-display-lg-mobile font-display-lg-mobile text-secondary">98%</p>
+<p class="font-label-caps text-label-caps">CLIENT SATISFACTION</p>
+</div>
+</div>
+</div>
+<div class="relative group">
+<div class="aspect-video rounded-2xl overflow-hidden glass-panel p-2">
+<div class="w-full h-full rounded-xl overflow-hidden relative">
+<img alt="AI Workflow" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A futuristic digital workstation where complex neural network diagrams and video editing interfaces are projected in a holographic glow. The environment is dark and atmospheric, featuring deep purple and electric blue lighting. High-end professional equipment like specialized controllers and monitors are visible in the background, creating a sleek cinematic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3CZAK4chA-OopuRJmzouxqSm3qul5O7n1XARBtwCD6Nfbtx_y3BZ-f4lTzH7fIg9qO4ICh6wO-BANoW4ROXQD1GKYN4mH2INm_169ttvKJ-a-BdIiaa1Brs1HVZt7IWtbyafydsn_dKTslIRSncfb-lxt-ltGUHj5jKpByeYx3t5UJ7mXBUBO-75MCpd1V5nihonpUxTDDqHYXShfk-t9xXna71IluEPCe63b5i_Hqn5z3_L7HXi67AZuBiibHD8EN7t2XGBWL-g"/>
+<div class="absolute inset-0 bg-primary/20 mix-blend-overlay"></div>
+</div>
+</div>
+<!-- Decorative glow -->
+<div class="absolute -inset-4 bg-primary/10 blur-3xl -z-10 rounded-full"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Services Section -->
+<section class="py-24 md:py-32" id="services">
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto text-center mb-16">
+<h2 class="font-headline-md text-headline-md mb-4">Core Services</h2>
+<p class="text-on-surface-variant font-body-lg text-body-lg max-w-2xl mx-auto">우리는 AI 기술을 통해 영상 제작의 모든 과정을 혁신하며 차별화된 가치를 제공합니다.</p>
+</div>
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto grid md:grid-cols-3 gap-gutter">
+<!-- Service Card 1 -->
+<div class="bento-card glass-panel p-8 rounded-2xl border border-outline-variant/10">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined text-3xl">auto_videocam</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-4">AI Video Creation</h3>
+<p class="text-on-surface-variant font-body-md text-body-md mb-6">
+                        최첨단 AI 기술을 활용한 고퀄리티 영상 제작. 텍스트-투-비디오, 스타일 트랜스퍼를 통해 유니크한 영상을 선사합니다.
+                    </p>
+<ul class="space-y-3 text-sm text-on-surface-variant">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> 4K AI Upscaling</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> Generative AI Visuals</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> Real-time Rendering</li>
+</ul>
+</div>
+<!-- Service Card 2 -->
+<div class="bento-card glass-panel p-8 rounded-2xl border border-outline-variant/10">
+<div class="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary mb-6">
+<span class="material-symbols-outlined text-3xl">psychology</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-4">Content Planning</h3>
+<p class="text-on-surface-variant font-body-md text-body-md mb-6">
+                        트렌드를 리드하는 차별화된 콘텐츠 기획. 데이터 분석을 기반으로 타겟 고객의 마음을 사로잡는 스토리텔링을 설계합니다.
+                    </p>
+<ul class="space-y-3 text-sm text-on-surface-variant">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Data-Driven Storyboards</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Brand Narrative Design</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Social Media Optimization</li>
+</ul>
+</div>
+<!-- Service Card 3 -->
+<div class="bento-card glass-panel p-8 rounded-2xl border border-outline-variant/10">
+<div class="w-12 h-12 rounded-lg bg-tertiary/10 flex items-center justify-center text-tertiary mb-6">
+<span class="material-symbols-outlined text-3xl">motion_mode</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-4">Motion Graphics</h3>
+<p class="text-on-surface-variant font-body-md text-body-md mb-6">
+                        시선을 사로잡는 화려한 모션 그래픽. AI 모션 캡처와 전통적인 그래픽 기법을 결합하여 역동적인 결과물을 도출합니다.
+                    </p>
+<ul class="space-y-3 text-sm text-on-surface-variant">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-tertiary text-sm">check_circle</span> 3D AI Animations</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-tertiary text-sm">check_circle</span> Kinetic Typography</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-tertiary text-sm">check_circle</span> Dynamic Visual Effects</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="py-24 md:py-32 relative" id="contact">
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="grid lg:grid-cols-12 gap-12 bg-surface-container-low rounded-3xl overflow-hidden border border-outline-variant/10">
+<div class="lg:col-span-5 p-8 md:p-12 bg-primary/5 flex flex-col justify-between">
+<div>
+<h2 class="font-headline-md text-headline-md mb-6">Let's Create<br/>Something Iconic</h2>
+<p class="text-on-surface-variant font-body-lg text-body-lg mb-8">
+                                당신의 다음 프로젝트를 위한 최적의 파트너, 머핀 스튜디오와 함께하세요.
+                            </p>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<div>
+<p class="font-bold">Office</p>
+<p class="text-on-surface-variant">Seoul, Republic of Korea</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary">mail</span>
+<div>
+<p class="font-bold">Email</p>
+<p class="text-on-surface-variant">hello@muffinstudio.com</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary">call</span>
+<div>
+<p class="font-bold">Phone</p>
+<p class="text-on-surface-variant">+82 2-123-4567</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 flex gap-4">
+<a class="w-10 h-10 rounded-full border border-outline-variant/30 flex items-center justify-center hover:bg-primary/20 transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">share</span>
+</a>
+<a class="w-10 h-10 rounded-full border border-outline-variant/30 flex items-center justify-center hover:bg-primary/20 transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">public</span>
+</a>
+</div>
+</div>
+<div class="lg:col-span-7 p-8 md:p-12">
+<form class="space-y-6">
+<div class="grid md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant block">NAME</label>
+<input class="w-full bg-surface-container border border-outline-variant/30 rounded-lg px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-on-surface-variant/30" placeholder="이름을 입력하세요" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant block">EMAIL</label>
+<input class="w-full bg-surface-container border border-outline-variant/30 rounded-lg px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-on-surface-variant/30" placeholder="이메일 주소를 입력하세요" type="email"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant block">MESSAGE</label>
+<textarea class="w-full bg-surface-container border border-outline-variant/30 rounded-lg px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-on-surface-variant/30" placeholder="문의하실 내용을 상세히 적어주세요" rows="6"></textarea>
+</div>
+<button class="w-full bg-primary-container text-on-primary-container py-4 rounded-lg font-bold text-lg hover:opacity-90 active:scale-[0.98] transition-all" type="submit">
+                                문의 보내기
+                            </button>
+</form>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant/10">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop py-12 gap-8 max-w-container-max mx-auto">
+<div class="flex flex-col items-center md:items-start gap-4">
+<div class="flex items-center gap-3">
+<img alt="Muffin Studio Logo" class="h-6" src=""/>
+<span class="text-headline-sm font-headline-sm font-bold text-primary">Muffin Studio</span>
+</div>
+<p class="text-on-surface-variant font-body-md text-body-md text-center md:text-left">
+                    © 2026 Muffin Studio. All rights reserved.
+                </p>
+</div>
+<div class="flex flex-wrap justify-center gap-x-8 gap-y-4">
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md text-body-md" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md text-body-md" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md text-body-md" href="#">Social</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md text-body-md" href="#">Careers</a>
+</div>
+</div>
+</footer>
+<script>
+        // Simple micro-interaction for navbar transparency
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-lg', 'bg-background/95');
+            } else {
+                nav.classList.remove('shadow-lg', 'bg-background/95');
+            }
+        });
+
+        // Intersection observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.bento-card').forEach(card => {
+            card.classList.add('opacity-0', 'translate-y-10', 'transition-all', 'duration-700');
+            observer.observe(card);
+        });
+    </script>
+</body></html>
